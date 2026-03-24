@@ -56,15 +56,19 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT SIDE - LOGIN CARD */}
-      <div className="flex items-center justify-center px-6 py-12">
+      <div className="flex items-center justify-center px-4 sm:px-6 py-12">
+        <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border">
+          {/* Mobile Logo */}
+          <div className="md:hidden flex items-center justify-center gap-2 mb-8">
+            <span className="text-3xl">🚕</span>
+            <span className="text-xl font-bold tracking-tight text-gray-800">TaxiBooking</span>
+          </div>
 
-        <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-2xl border">
-
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-2">
             Sign in
           </h2>
 
-          <p className="text-sm text-gray-500 text-center mb-6">
+          <p className="text-sm text-gray-500 text-center mb-8">
             Access your account
           </p>
 

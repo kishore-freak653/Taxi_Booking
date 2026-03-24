@@ -104,35 +104,35 @@ export default function MyBookingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">My Bookings</h1>
-            <p className="text-gray-600 mt-1">
-              {bookings.length} booking{bookings.length !== 1 ? 's' : ''} total
+            <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">My Bookings</h1>
+            <p className="text-sm text-gray-500 mt-1">
+              You have {bookings.length} booking{bookings.length !== 1 ? 's' : ''} in your history
             </p>
           </div>
           <Link
             href="/booking"
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+            className="w-full sm:w-auto text-center bg-[#87194B] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#6d143c] transition shadow-lg shadow-[#87194B]/10 active:scale-95"
           >
-            + Book a Ride
+            + New Ride
           </Link>
         </div>
 
         {/* Empty State */}
         {bookings.length === 0 ? (
-          <div className="bg-white rounded-xl shadow-sm p-12 text-center">
-            <div className="text-6xl mb-4">🚕</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No bookings yet</h3>
-            <p className="text-gray-600 mb-6">You haven't made any bookings yet.</p>
+          <div className="bg-white rounded-3xl shadow-sm p-12 text-center border border-gray-100">
+            <div className="text-6xl mb-6">🚕</div>
+            <h3 className="text-xl font-black text-gray-900 mb-2">No bookings yet</h3>
+            <p className="text-sm text-gray-500 mb-8 max-w-xs mx-auto">Your trip history will appear here once you book your first ride.</p>
             <Link
               href="/booking"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition"
+              className="inline-block bg-[#87194B] text-white px-8 py-3 rounded-xl font-bold hover:bg-[#6d143c] transition shadow-lg shadow-[#87194B]/20"
             >
-              Book a Ride
+              Start Booking
             </Link>
           </div>
         ) : (

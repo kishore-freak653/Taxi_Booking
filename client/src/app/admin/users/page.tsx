@@ -52,57 +52,58 @@ export default function UsersPage() {
     );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto space-y-6">
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Users</h1>
-            <p className="text-gray-600 mt-1">Manage registered customers</p>
+            <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">User Management</h1>
+            <p className="text-sm text-gray-500 mt-1">Directly manage and view registered customers</p>
           </div>
-          <span className="bg-[#87194B] text-white text-sm font-semibold px-4 py-2 rounded-full">
-            {customers.length} Customer{customers.length !== 1 ? 's' : ''}
-          </span>
+          <div className="bg-[#87194B]/10 text-[#87194B] px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest border border-[#87194B]/20 inline-flex items-center justify-center">
+            {customers.length} TOTAL CUSTOMERS
+          </div>
         </div>
 
         {/* Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-6">
+        <div className="relative group">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <span className="text-gray-400 group-focus-within:text-[#87194B] transition-colors">🔍</span>
+          </div>
           <input
             type="text"
-            placeholder="Search by name or email…"
+            placeholder="Search by name, email or mobile…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#87194B]/30 focus:border-[#87194B]"
+            className="w-full bg-white border border-gray-100 rounded-2xl pl-12 pr-4 py-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-[#87194B]/30 focus:border-[#87194B] transition-all"
           />
         </div>
 
-        {/* Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        {/* Table Container */}
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
           {isLoading ? (
-            <div className="flex items-center justify-center py-16">
+            <div className="flex items-center justify-center py-24">
               <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#87194B]" />
             </div>
           ) : customers.length === 0 ? (
-            <div className="text-center py-16 text-gray-500">
+            <div className="text-center py-24 text-gray-500">
               <p className="text-4xl mb-3">👤</p>
-              <p className="font-medium">No customers found</p>
+              <p className="font-bold text-gray-400">No customers matching your search</p>
             </div>
           ) : (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  {['#', 'Name', 'Email', 'Phone', 'Joined', 'Role'].map((h) => (
-                    <th
-                      key={h}
-                      className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide"
-                    >
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left min-w-[800px]">
+                <thead>
+                  <tr className="bg-gray-50/50 text-[10px] uppercase tracking-widest font-black text-gray-400 border-b border-gray-50">
+                    {['#', 'Name', 'Email/Phone', 'Joined On', 'Status', 'Actions'].map((h) => (
+                      <th key={h} className="px-6 py-4">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
                 {customers.map((u, idx) => (
                   <tr key={u.id} className="hover:bg-gray-50 transition">
                     <td className="px-4 py-3 text-sm text-gray-400">{idx + 1}</td>
@@ -131,7 +132,8 @@ export default function UsersPage() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+            </div>
           )}
         </div>
       </div>

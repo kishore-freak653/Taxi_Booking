@@ -95,56 +95,59 @@ export default function AdminBookingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">All Bookings</h1>
-            <p className="text-gray-600 mt-1">Manage and track customer bookings</p>
+            <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">All Bookings</h1>
+            <p className="text-sm text-gray-500 mt-1">Manage and track customer bookings</p>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-6 flex flex-wrap gap-2">
-          {STATUS_OPTIONS.map((s) => (
-            <button
-              key={s}
-              onClick={() => { setStatusFilter(s); setPage(1); }}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
-                statusFilter === s
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              {s === 'ALL' ? 'All' : s.replace('_', ' ')}
-            </button>
-          ))}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-2 sm:p-3 overflow-x-auto">
+          <div className="flex flex-nowrap items-center gap-2 min-w-max">
+            {STATUS_OPTIONS.map((s) => (
+              <button
+                key={s}
+                onClick={() => { setStatusFilter(s); setPage(1); }}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                  statusFilter === s
+                    ? 'bg-[#87194B] text-white shadow-lg shadow-[#87194B]/20'
+                    : 'bg-gray-50 text-gray-400 hover:bg-gray-100'
+                }`}
+              >
+                {s === 'ALL' ? 'All' : s.replace('_', ' ')}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        {/* Table Container */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           {isLoading ? (
-            <div className="flex items-center justify-center py-16">
-              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600" />
+            <div className="flex items-center justify-center py-24">
+              <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[#87194B]" />
             </div>
           ) : bookings.length === 0 ? (
-            <div className="text-center py-16 text-gray-500">
+            <div className="text-center py-24 text-gray-500">
               <p className="text-4xl mb-3">📋</p>
-              <p className="font-medium">No bookings found</p>
+              <p className="font-bold text-gray-400">No bookings found</p>
             </div>
           ) : (
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  {['Reference', 'Customer', 'Route', 'Vehicle', 'Fare', 'Date', 'Status', 'Actions'].map((h) => (
-                    <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                      {h}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left min-w-[900px]">
+                <thead>
+                  <tr className="bg-gray-50/50 text-[10px] uppercase tracking-widest font-black text-gray-400 border-b border-gray-50">
+                    {['Reference', 'Customer', 'Route', 'Vehicle', 'Fare', 'Date', 'Status', 'Actions'].map((h) => (
+                      <th key={h} className="px-6 py-4">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50">
                 {bookings.map((b) => {
                   const fare = Number(b.finalFare || b.estimatedFare || 0);
                   const pickupAddress = getAddress(b.pickupLocation);
@@ -197,7 +200,8 @@ export default function AdminBookingsPage() {
                   );
                 })}
               </tbody>
-            </table>
+              </table>
+            </div>
           )}
         </div>
 

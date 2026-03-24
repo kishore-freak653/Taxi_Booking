@@ -126,36 +126,39 @@ export default function BookingDetailsPage() {
   const distance = Number(booking.distanceKm || 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-2xl mx-auto space-y-6">
         {/* Back link */}
         <Link
           href="/my-bookings"
-          className="inline-flex items-center text-sm text-blue-600 hover:underline mb-6"
+          className="inline-flex items-center text-xs font-bold text-[#87194B] uppercase tracking-widest hover:underline"
         >
-          ← Back to My Bookings
+          ← Back to Trips
         </Link>
 
         {/* Confirmation Banner */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-4">
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="text-2xl font-bold text-gray-900">Booking Details</h1>
-            <span className={`px-3 py-1 rounded-full text-sm font-semibold ${STATUS_STYLES[booking.status]}`}>
+        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight text-center sm:text-left">Trip Details</h1>
+            <span className={`px-4 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest border text-center ${STATUS_STYLES[booking.status]}`}>
               {STATUS_LABELS[booking.status]}
             </span>
           </div>
-          <p className="text-sm text-gray-500 mb-1">Reference ID</p>
-          <p className="text-2xl font-mono font-bold text-blue-600">{booking.referenceId}</p>
-          <p className="text-xs text-gray-400 mt-1">
-            Booked on{' '}
-            {new Date(booking.createdAt).toLocaleDateString('en-IN', {
-              day: 'numeric',
-              month: 'long',
-              year: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
-          </p>
+          
+          <div className="space-y-1 text-center sm:text-left">
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Booking Reference</p>
+            <p className="text-2xl sm:text-3xl font-mono font-black text-[#87194B]">#{booking.referenceId.slice(0, 10).toUpperCase()}</p>
+            <p className="text-xs text-gray-400 font-medium mt-2">
+              Booked on{' '}
+              {new Date(booking.createdAt).toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </p>
+          </div>
         </div>
 
         {/* Route */}

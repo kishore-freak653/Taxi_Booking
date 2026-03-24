@@ -116,35 +116,36 @@ export default function AdminVehiclesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Vehicle Management</h1>
-            <p className="text-gray-600 mt-1">{vehicles.length} vehicle types</p>
+            <h1 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">Vehicle Management</h1>
+            <p className="text-sm text-gray-500 mt-1">{vehicles.length} vehicle types configured</p>
           </div>
           <button
             onClick={openAddModal}
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+            className="w-full sm:w-auto bg-[#87194B] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#6d143c] transition shadow-lg shadow-[#87194B]/20 active:scale-95"
           >
-            + Add Vehicle
+            + Add New Vehicle
           </button>
         </div>
 
-        {/* Table */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                {['Vehicle', 'Capacity', 'Base Fare', 'Per KM', 'Per Min', 'Status', 'Actions'].map((h) => (
-                  <th key={h} className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
+        {/* Table Container */}
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left min-w-[800px]">
+              <thead>
+                <tr className="bg-gray-50/50 text-[10px] uppercase tracking-widest font-black text-gray-400 border-b border-gray-50">
+                  {['Vehicle', 'Capacity', 'Base Fare', 'Per KM', 'Per Min', 'Status', 'Actions'].map((h) => (
+                    <th key={h} className="px-6 py-4">
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-50">
               {vehicles.map((v) => (
                 <tr key={v.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
@@ -181,7 +182,8 @@ export default function AdminVehiclesPage() {
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -231,7 +233,7 @@ export default function AdminVehiclesPage() {
                   Cancel
                 </button>
                 <button type="submit" disabled={isSaving}
-                  className="flex-1 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50">
+                  className="flex-1 py-2 bg-[#87194B] text-white rounded-lg text-sm font-medium hover:bg-[#6d143c] disabled:opacity-50">
                   {isSaving ? 'Saving...' : editingVehicle ? 'Save Changes' : 'Add Vehicle'}
                 </button>
               </div>

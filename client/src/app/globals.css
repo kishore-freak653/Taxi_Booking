@@ -8,9 +8,16 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
@@ -18,3 +25,4 @@ body {
     text-wrap: balance;
   }
 }
+
