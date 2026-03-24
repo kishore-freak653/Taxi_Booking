@@ -14,6 +14,7 @@ import vehicleRoutes from './routes/vehicleRoutes';
 import adminRoutes from './routes/adminRoutes';
 
 const app: Application = express();
+app.set("trust proxy", 1);
 const PORT = config.PORT;
 
 // ========================================
