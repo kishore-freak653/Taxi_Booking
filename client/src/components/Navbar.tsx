@@ -76,13 +76,13 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center gap-3 h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex min-w-0 items-center gap-2 group">
             <span className="text-2xl font-extrabold text-blue-600 transition-transform group-hover:scale-105">
               🚕
             </span>
-            <span className="text-xl font-bold tracking-tight text-gray-800 group-hover:text-blue-600 transition-colors">
+            <span className="hidden min-[380px]:inline text-lg sm:text-xl font-bold tracking-tight text-gray-800 group-hover:text-blue-600 transition-colors">
               TaxiBooking
             </span>
           </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
           {/* Right Section */}
           <div className="flex items-center gap-4">
             {user ? (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 {/* User Info - Hidden on tiny screens */}
                 <div className="hidden sm:flex flex-col text-right">
                   <span className="text-sm font-semibold text-gray-800">
@@ -133,7 +133,7 @@ export default function Navbar() {
 
                 <Link
                   href="/register"
-                  className="bg-blue-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-blue-700 transition"
+                  className="bg-blue-600 text-white px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg text-sm font-semibold shadow-sm hover:bg-blue-700 transition whitespace-nowrap"
                 >
                   {/* Shorter text on very small screens */}
                   <span className="sm:hidden">Join</span>

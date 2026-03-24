@@ -56,8 +56,8 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT SIDE - LOGIN CARD */}
-      <div className="flex items-center justify-center px-4 sm:px-6 py-12">
-        <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border">
+      <div className="flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
+        <div className="w-full max-w-md bg-white p-5 sm:p-8 rounded-2xl shadow-2xl border">
           {/* Mobile Logo */}
           <div className="md:hidden flex items-center justify-center gap-2 mb-8">
             <span className="text-3xl">🚕</span>
@@ -119,7 +119,7 @@ export default function LoginPage() {
           </form>
 
           {/* Test credentials (cleaned) */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-xl text-xs text-gray-600">
+          <div className="mt-6 p-4 bg-gray-50 rounded-xl text-xs leading-6 text-gray-600 break-words">
             <p className="font-semibold mb-1">Test Credentials</p>
             <p>Customer: customer@test.com / customer123</p>
             <p>Admin: admin@taxibooking.com / admin123</p>

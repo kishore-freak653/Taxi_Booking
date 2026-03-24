@@ -56,8 +56,8 @@ export default function RegisterPage() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/20 blur-3xl rounded-full"></div>
       </div>
 
-      <div className="flex items-center justify-center px-4 sm:px-6 py-12">
-        <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border">
+      <div className="flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12">
+        <div className="w-full max-w-md bg-white p-5 sm:p-8 rounded-2xl shadow-2xl border">
           {/* Mobile Logo */}
           <div className="md:hidden flex items-center justify-center gap-2 mb-8">
             <span className="text-3xl">🚕</span>
@@ -75,14 +75,14 @@ export default function RegisterPage() {
           <form className="space-y-4" onSubmit={handleSubmit}>
 
             {/* Name Row */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 type="text"
                 placeholder="First Name"
                 required
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
               />
 
               <input
@@ -91,7 +91,7 @@ export default function RegisterPage() {
                 required
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                className="px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
               />
             </div>
 
