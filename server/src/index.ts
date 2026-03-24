@@ -80,6 +80,11 @@ app.use((req, _res, next) => {
   next();
 });
 
+
+app.get('/', (_req, res) => {
+  res.send('🚀 Taxi Booking API is running');
+});
+
 // ========================================
 // Health Check
 // ========================================
