@@ -1,0 +1,99 @@
+// Prisma schema for Taxi Booking Platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  firstName     String?   @map("first_name")
+  lastName      String?   @map("last_name")
+  phone         String?
+  role          Role      @default(CUSTOMER)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  
+  bookings      Booking[]
+  
+  @@map("users")
+}
+
+model VehicleType {
+  id              String    @id @default(uuid())
+  name            String    @unique
+  description     String?
+  baseFare        Decimal   @map("base_fare") @db.Decimal(10, 2)
+  perKmRate       Decimal   @map("per_km_rate") @db.Decimal(10, 2)
+  perMinuteRate   Decimal   @map("per_minute_rate") @db.Decimal(10, 2)
+  capacity        Int
+  imageUrl        String?   @map("image_url")
+  isActive        Boolean   @default(true) @map("is_active")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+  
+  bookings        Booking[]
+  
+  @@map("vehicle_types")
+}
+
+model Booking {
+  id                String        @id @default(uuid())
+  referenceId       String        @unique @map("reference_id")
+  
+  userId            String        @map("user_id")
+  user              User          @relation(fields: [userId], references: [id])
+  
+  vehicleTypeId     String        @map("vehicle_type_id")
+  vehicleType       VehicleType   @relation(fields: [vehicleTypeId], references: [id])
+  
+  pickupLocation    Json          @map("pickup_location")
+  dropoffLocation   Json          @map("dropoff_location")
+  
+  distanceKm        Decimal       @map("distance_km") @db.Decimal(10, 2)
+  durationMinutes   Int           @map("duration_minutes")
+  estimatedFare     Decimal       @map("estimated_fare") @db.Decimal(10, 2)
+  finalFare         Decimal?      @map("final_fare") @db.Decimal(10, 2)
+  
+  status            BookingStatus @default(PENDING)
+  notes             String?
+  
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+  
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("bookings")
+}
+
+model FareRule {
+  id          String   @id @default(uuid())
+  name        String
+  ruleType    String   @map("rule_type")
+  conditions  Json
+  multiplier  Decimal  @db.Decimal(5, 2)
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  @@map("fare_rules")
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
