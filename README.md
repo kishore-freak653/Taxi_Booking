@@ -2,6 +2,10 @@
 
 A full-stack taxi booking platform built with PostgreSQL, Express.js, React (Next.js), and Node.js.
 
+🌐 Live Demo
+Frontend: https://taxi-booking-sable.vercel.app
+Backend API: https://taxibooking-production-c75c.up.railway.app
+
 ## 📋 Table of Contents
 
 - [Features](#features)
@@ -359,22 +363,16 @@ Content-Type: application/json
 }
 ```
 
-## 🌐 Deployment
-
-### Backend (Railway/Render)
-
-1. **Create a new project** on Railway or Render
-2. **Connect your GitHub repository**
-3. **Add PostgreSQL database** (automatically provisioned)
-4. **Set environment variables**:
-   - `NODE_ENV=production`
-   - `DATABASE_URL` (auto-set by platform)
-   - `JWT_ACCESS_SECRET` (generate new)
-   - `JWT_REFRESH_SECRET` (generate new)
-   - `CORS_ORIGIN` (your frontend URL)
-
-5. **Build command**: `npm run build`
-6. **Start command**: `npm start`
+## 🌐 Deployment Backend (Railway)
+1.Connected GitHub repo to Railway
+2.Added PostgreSQL database
+3.Configured environment variables
+   Used:
+4.npx prisma migrate deploy && npm start
+  Important Notes
+5.Prisma migrations run automatically in production
+6.Railway provides DATABASE_URL
+7.Backend runs on dynamic port
 
 ### Frontend (Vercel)
 
